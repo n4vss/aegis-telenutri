@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aegis Telenutri | Consumer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header id="nav"></header>
+<main><div class="grid">
+<section class="card"><div class="card-header"><span class="card-icon"><i data-lucide="utensils"></i></span><h2>Log a Meal</h2></div>
+<label for="type">Meal</label><select id="type"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snack</option></select>
+<label for="food">Food / description</label><input id="food" placeholder="Grilled chicken & rice">
+<label for="cal">Calories</label><input id="cal" type="number" min="0" placeholder="450">
+<button id="addMeal"><i data-lucide="save"></i> Save meal</button>
+<h3 class="section-title">My Meals</h3><div id="meals"></div></section>
+
+<section class="card"><div class="card-header"><span class="card-icon"><i data-lucide="calendar"></i></span><h2>Book a Consultation</h2></div>
+<label for="date">Date</label><input id="date" type="date">
+<label for="time">Time</label><select id="time"><option>09:00</option><option>10:00</option><option>11:00</option><option>13:00</option><option>14:00</option><option>15:00</option></select>
+<label for="diet">Dietitian</label><select id="diet"><option>Dr. Santos</option><option>Dr. Reyes</option></select>
+<button id="book"><i data-lucide="calendar-check"></i> Book appointment</button>
+<h3 class="section-title">My Appointments</h3><div id="appts"></div>
+<h3 class="section-title">Notes from my dietitian</h3><div id="notes"></div></section>
+</div></main>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="app.js"></script><script src="consumer.js"></script></body></html>

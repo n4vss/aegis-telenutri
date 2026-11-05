@@ -1,0 +1,113 @@
+/* Aegis Telenutri — glassmorphism system
+   Layers: ambient gradient field -> frosted surfaces (blur + saturate + 1px light edge + inner highlight) -> solid, high-contrast text/actions. */
+:root{--primary:#1E7A4C;--primary-dark:#175F3B;--primary-light:rgba(46,139,87,.14);--secondary:#134E4A;--secondary-dark:#0E3835;--accent:#F4A259;--accent-light:rgba(244,162,89,.22);--text:#14211D;--text-muted:#44524D;--danger:#B91C1C;
+--glass:rgba(255,255,255,.58);--glass-strong:rgba(255,255,255,.78);--glass-edge:rgba(255,255,255,.75);--glass-line:rgba(19,78,74,.12);
+--blur:blur(20px) saturate(165%);--radius-sm:10px;--radius:14px;--radius-lg:22px;
+--shadow:0 10px 30px rgba(19,78,74,.14),inset 0 1px 0 rgba(255,255,255,.85);--shadow-sm:0 4px 14px rgba(19,78,74,.08),inset 0 1px 0 rgba(255,255,255,.8);
+--font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;font-family:var(--font);color:var(--text);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;
+background:#E6F1EA;position:relative;overflow-x:hidden}
+/* ambient field: gives the glass something to refract */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(520px 420px at 8% 6%,rgba(46,139,87,.55),transparent 70%),
+radial-gradient(560px 460px at 95% 12%,rgba(31,95,91,.45),transparent 70%),
+radial-gradient(520px 440px at 80% 95%,rgba(244,162,89,.50),transparent 70%),
+radial-gradient(480px 400px at 5% 90%,rgba(120,200,170,.55),transparent 70%),#EAF3EE}
+body>main{flex:1;width:100%}
+a{color:var(--primary-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;box-shadow:0 0 0 5px rgba(255,255,255,.9)}
+ 
+/* Nav: floating frosted bar */
+#nav{position:sticky;top:12px;z-index:20;margin:12px auto 0;width:min(1100px,calc(100% - 24px));display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:10px 16px;
+background:var(--glass-strong);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glass-edge);border-radius:999px;box-shadow:var(--shadow)}
+#nav .brand{display:flex;align-items:center;gap:10px;color:var(--secondary);font-weight:700;font-size:1.1rem;text-decoration:none}
+#nav .brand-accent{color:var(--primary)}
+#nav .brand-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--secondary);color:#fff}
+#nav .brand-icon svg{width:18px;height:18px}
+#nav .right{display:flex;gap:10px;align-items:center;font-size:.92rem;flex-wrap:wrap}
+#nav .user-chip{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--secondary);font-weight:600;padding:6px 12px;border-radius:999px}
+#nav .user-chip svg{width:16px;height:16px}
+ 
+main{max-width:1100px;margin:28px auto;padding:0 20px;display:grid;gap:20px;align-content:start}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px;align-items:start}
+ 
+/* Glass cards */
+.card{background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glass-edge);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow)}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--glass-line)}
+.card-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius);background:var(--glass-strong);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0}
+.card-icon svg{width:20px;height:20px}
+.card h2{margin:0;color:var(--secondary);font-size:1.2rem;font-weight:700;line-height:1.3}
+.card h3.section-title{margin:26px 0 6px;color:var(--secondary);font-size:1rem;font-weight:600}
+ 
+/* Forms: inset glass fields */
+label{display:block;font-size:.88rem;margin:14px 0 6px;font-weight:600;color:var(--secondary)}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid rgba(19,78,74,.22);border-radius:var(--radius-sm);font:inherit;background:rgba(255,255,255,.7);color:var(--text);box-shadow:inset 0 1px 2px rgba(19,78,74,.06);transition:border-color .15s,box-shadow .15s,background .15s}
+input::placeholder,textarea::placeholder{color:#5F6D68}
+input:hover,select:hover,textarea:hover{border-color:var(--primary);background:rgba(255,255,255,.85)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 4px rgba(46,139,87,.22)}
+textarea{resize:vertical}
+ 
+/* Buttons */
+button,.btn{background:linear-gradient(180deg,#26935A,var(--primary-dark));color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:var(--radius-sm);padding:12px 18px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;box-shadow:0 6px 16px rgba(30,122,76,.30),inset 0 1px 0 rgba(255,255,255,.35);transition:filter .15s,transform .05s}
+button:hover,.btn:hover{filter:brightness(1.07);text-decoration:none}
+button:active,.btn:active{transform:translateY(1px)}
+.card>button{width:100%}
+.btn.accent{background:linear-gradient(180deg,#F8B374,var(--accent));color:#1F2937;box-shadow:0 6px 16px rgba(244,162,89,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn.secondary{background:linear-gradient(180deg,#1B6561,var(--secondary))}
+.btn.ghost{background:transparent;border:1px solid rgba(19,78,74,.35);color:var(--secondary);margin:0;padding:7px 14px;box-shadow:none}
+.btn.ghost:hover{background:rgba(255,255,255,.7);filter:none}
+.btn svg{width:18px;height:18px}
+.item .btn{margin-top:8px;padding:7px 14px;font-size:.9rem}
+ 
+/* Lists: nested glass rows */
+.item{background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.7);border-radius:var(--radius);padding:12px 14px;margin-top:10px;font-size:.95rem}
+.item-main{display:flex;gap:12px;align-items:flex-start}
+.item-main .item-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;background:var(--primary-light);color:var(--primary);flex-shrink:0}
+.item-main .item-icon svg{width:16px;height:16px}
+.item-main>div{min-width:0;overflow-wrap:anywhere}
+.tag{background:var(--accent-light);color:#7A3F08;border:1px solid rgba(244,162,89,.45);border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:700;display:inline-block;margin-left:6px;white-space:nowrap}
+.muted{color:var(--text-muted);font-size:.9rem}
+p.muted{background:rgba(255,255,255,.35);border:1px dashed rgba(19,78,74,.25);border-radius:var(--radius-sm);padding:14px;text-align:center;margin:10px 0 0}
+.card>p.muted:first-of-type{text-align:left;background:none;border:0;padding:0;margin:0 0 4px}
+#patients a{font-weight:600;display:block;padding:4px 0}
+ 
+/* Home */
+.hero{text-align:center;padding:36px 0 8px}
+.hero-icon{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:22px;background:var(--glass-strong);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glass-edge);color:var(--primary);margin-bottom:16px;box-shadow:var(--shadow)}
+.hero-icon svg{width:32px;height:32px}
+.hero h1{margin:0 auto;max-width:18ch;color:var(--secondary);font-size:clamp(2rem,5.5vw,3.2rem);font-weight:700;letter-spacing:-.025em;line-height:1.12}
+.hero p{margin:14px auto 0;max-width:52ch;color:var(--text-muted);font-size:1.08rem}
+.hero .cta{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:20px}
+.hero .cta .btn{margin-top:0}
+.trust{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
+.trust li{display:inline-flex;align-items:center;gap:6px;background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--glass-edge);border-radius:999px;padding:6px 14px;font-size:.86rem;font-weight:600;color:var(--secondary)}
+.trust svg{width:16px;height:16px;color:var(--primary)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:12px}
+.step{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.75);border-radius:var(--radius);padding:14px;text-align:center;font-size:.88rem;color:var(--text-muted)}
+.step-icon{display:block;color:var(--primary);margin-bottom:6px}
+.step-icon svg{width:22px;height:22px}
+.step b{display:block;color:var(--secondary);margin-bottom:2px}
+.team{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.team .tag{margin:0;background:var(--primary-light);border-color:rgba(46,139,87,.3);color:var(--secondary)}
+ 
+/* Session */
+#jitsi{height:70vh;min-height:400px;border-radius:var(--radius);overflow:hidden;background:#0F2A27;border:1px solid var(--glass-edge)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.actions .btn{margin-top:0}
+ 
+/* Toast */
+#toasts{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:grid;gap:8px;z-index:50;width:min(92vw,420px)}
+.toast{background:rgba(19,78,74,.92);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);color:#fff;padding:12px 16px;border-radius:var(--radius);box-shadow:var(--shadow);font-size:.92rem;border-left:4px solid var(--accent)}
+.toast.error{background:rgba(127,29,29,.94);border-left-color:#FCA5A5}
+ 
+footer{text-align:center;margin:32px auto 0;padding:20px;color:var(--text-muted);font-size:.88rem;border-top:1px solid var(--glass-line);width:100%;max-width:1100px}
+footer strong{color:var(--secondary)}
+ 
+/* Fallback when blur is unsupported: raise opacity to keep text legible */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass:rgba(255,255,255,.92);--glass-strong:#fff}}
+@media(prefers-reduced-transparency:reduce){:root{--glass:#fff;--glass-strong:#fff}.card,#nav,.trust li{-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media(max-width:640px){#nav{justify-content:center;border-radius:var(--radius-lg)}#nav .right{justify-content:center}main{margin-top:20px}.card{padding:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

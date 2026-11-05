@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aegis Telenutri | Provider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header id="nav"></header>
+<main><div class="grid">
+<section class="card"><div class="card-header"><span class="card-icon"><i data-lucide="users"></i></span><h2>Patients</h2></div><div id="patients"></div></section>
+<section class="card"><div class="card-header"><span class="card-icon"><i data-lucide="file-text"></i></span><h2 id="ptitle">Select a patient</h2></div>
+<div id="pmeals"></div>
+<label for="note">Charting note</label><textarea id="note" rows="4" placeholder="Assessment, advice, goals..."></textarea>
+<button id="saveNote"><i data-lucide="save"></i> Save note</button>
+<div id="pnotes"></div></section>
+<section class="card"><div class="card-header"><span class="card-icon"><i data-lucide="video"></i></span><h2>Upcoming Sessions</h2></div><div id="appts"></div></section>
+</div></main>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="app.js"></script><script src="provider.js"></script></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aegis Telenutri | Virtual Session</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header id="nav"></header>
+<main><div class="card"><div class="card-header"><span class="card-icon"><i data-lucide="video"></i></span><h2>Virtual Consultation</h2></div>
+<p class="muted">Secure Jitsi Meet room. Allow camera and microphone when asked.</p>
+<div id="jitsi"></div>
+<div class="actions">
+<a class="btn" href="javascript:history.back()"><i data-lucide="arrow-left"></i> Leave and go back</a>
+<button id="copyLink" class="btn accent" type="button"><i data-lucide="clipboard"></i> Copy invite link</button>
+<a id="openTab" class="btn secondary" target="_blank" rel="noopener" href="#"><i data-lucide="external-link"></i> Open in new tab</a></div></div></main>
+<script src="https://meet.jit.si/external_api.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="app.js"></script><script src="session.js"></script></body></html>
