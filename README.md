@@ -117,6 +117,21 @@ GitHub Pages uses HTTPS, which is required for camera and microphone access.
 
 ## 6. End-to-End Test Checklist
 
+### Automated functional tests
+
+The project has dependency-free tests for shared storage and authentication, login
+routing, meal logging and validation, appointment booking and duplicate-slot
+prevention, consumer/provider data visibility, provider charting, and the session
+page's Jitsi setup and fallback states. Run them with Node.js 18 or newer:
+
+```sh
+node --test tests/app.test.js
+```
+
+Jitsi's live video, browser camera/microphone permissions, and mobile rendering
+still require a real browser and network connection; verify those with the manual
+checklist below.
+
 | # | Step | Expected result | Pass/Fail |
 |---|---|---|---|
 | 1 | Consumer login | Redirects to `consumer.html` | |
